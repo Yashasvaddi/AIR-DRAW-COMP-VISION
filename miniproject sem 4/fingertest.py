@@ -10,7 +10,6 @@ import pyttsx3
 import speech_recognition as sr
 import sys
 import PIL.Image
-import time as t
 
 genai.configure(api_key="AIzaSyC3vNkSnEJl-eFloSm9M4Bw0F_cJv2vusY")
 model = genai.GenerativeModel("gemini-2.0-flash")
@@ -124,7 +123,7 @@ else:
         if (camflag):
             frame=cv2.flip(frame,1)
         rgb_frame=cv2.cvtColor(frame,cv2.COLOR_BGR2RGB)
-        backdrop_source="Backdrop.webp"
+        backdrop_source="C:\\New folder\\codes\\college stuff\\AIR-DRAW-COMP-VISION\\miniproject sem 4\\Backdrop.webp"
         window=cv2.imread(backdrop_source)
         result=hands.process(rgb_frame)
         rect1x1,rect1y1=int(10),int(20)
@@ -134,7 +133,7 @@ else:
             cv2.rectangle(window,(rect1x1,rect1y1),(rect1x2,rect1y2),(255,255,255),2)
             cv2.putText(window,"Air Draw",(25,45),cv2.FONT_HERSHEY_TRIPLEX,0.6,(255,255,255),1,cv2.LINE_AA)
             cv2.rectangle(window,(rect1x1+160,rect1y1),(rect1x2+160,rect1y2),(255,255,255),2)
-            cv2.putText(window,"Slide Show",(180,45),cv2.FONT_HERSHEY_TRIPLEX,0.6,(255,255,255),1,cv2.LINE_AA)
+            cv2.putText(window,"Slide Show",(175,45),cv2.FONT_HERSHEY_TRIPLEX,0.5,(255,255,255),1,cv2.LINE_AA)
             cv2.rectangle(window,(rect1x1+310,rect1y1),(rect1x2+310,rect1y2),(255,255,255),2)
             cv2.putText(window,"Caption",(335,45),cv2.FONT_HERSHEY_TRIPLEX,0.6,(255,255,255),1,cv2.LINE_AA)
             cv2.rectangle(window,(rect1x1+460,rect1y1),(rect1x2+460,rect1y2),(255,255,255),2)
