@@ -11,6 +11,7 @@ import speech_recognition as sr
 import sys
 import PIL.Image
 
+
 genai.configure(api_key="AIzaSyC3vNkSnEJl-eFloSm9M4Bw0F_cJv2vusY")
 model = genai.GenerativeModel("gemini-2.0-flash")
 
@@ -171,8 +172,6 @@ else:
                         result=hands.process(rgb_frame)
                         rect1x1,rect1y1=int(10),int(410)
                         rect1x2,rect1y2=int(120),int(440)
-
-
                         #AIR CANVAS#
 
                         if result.multi_hand_landmarks:
@@ -378,12 +377,20 @@ else:
                         x2,y2=int(index.x*w),int(index.y*h) 
                         if ((cv2.waitKey(1) and (rect1x1+530<int((x1+x2)/2)<rect1x2+510-20 and rect1y1-170<int((y1+y2)/2)<rect1y2-170)and(int(distance)<=50))or(cv2.waitKey(1)==ord('x'))and click_flag):
                             num+=1
-                            if num>10:
+                            if num>12:
                                 num=1
                             address=fr'C:\Users\YASHAS\Pictures\ppt\img{num}.jpg'
                             window=cv2.imread(address)    
                             click_flag=False  
                             wallpaper_holder=True 
+                        if ((cv2.waitKey(1) and (rect1x1+20<int((x1+x2)/2)<rect1x2-20 and rect1y1-170<int((y1+y2)/2)<rect1y2-170)and(int(distance)<=50))or(cv2.waitKey(1)==ord('x'))and click_flag):
+                            num-=1
+                            if num<=0:
+                                num=12
+                            address=fr'C:\Users\YASHAS\Pictures\ppt\img{num}.jpg'
+                            window=cv2.imread(address)    
+                            click_flag=False  
+                            wallpaper_holder=True
                         window=cv2.resize(window, (w, h))
                         cv2.imshow("Window",window)
                         cv2.imshow("frame",frame) 
@@ -503,7 +510,7 @@ else:
                     t1.start()
                     while(True):
                         window=np.zeros((471, 636, 3)) + 255
-                        cv2.putText(window,"WELCOME TO YOUR PERSONAL CHATBOT\nFEEL FREE TO ASK ME ANYTHING",(5,25),cv2.FONT_HERSHEY_TRIPLEX,0.8,(0,0,0),1,cv2.LINE_AA)
+                        cv2.putText(window,"WELCOME TO YOUR PERSONAL CHATBOT",(5,25),cv2.FONT_HERSHEY_TRIPLEX,0.8,(0,0,0),1,cv2.LINE_AA)
                         ret,frame=cap.read()
                         if (camflag):
                             frame=cv2.flip(frame,1)
